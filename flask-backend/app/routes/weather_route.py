@@ -3,7 +3,7 @@ import requests
 
 weather_bp = Blueprint("weather", __name__)
 
-@weather_bp.route("/", methods=["GET", "POST"])
+@weather_bp.route("/weather", methods=["GET", "POST"])
 def weather():
     weather_data = None
     error_message = None

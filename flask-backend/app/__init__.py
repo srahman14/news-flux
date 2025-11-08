@@ -15,9 +15,8 @@ def create_app():
 
     # Import blueprints
     from app.routes.news_routes import news_bp
+    app.register_blueprint(news_bp, url_prefix="/api/v1/")
     from app.routes.weather_route import weather_bp  
-
-    app.register_blueprint(news_bp, url_prefix="/api/news")
-    app.register_blueprint(weather_bp, url_prefix="/api/weather") 
+    app.register_blueprint(weather_bp, url_prefix="/api/v1/") 
 
     return app

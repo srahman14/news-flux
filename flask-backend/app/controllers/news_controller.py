@@ -6,7 +6,6 @@ from app.utils.news_helper import make_get_req
 def fetch_news_data(endpoint="top-headlines", **params):
     api_key = current_app.config["NEWS_API_KEY"]
     base_url = f"https://newsapi.org/v2/"
-
     response = make_get_req(
         apiKey=api_key,
         BASE_URL=base_url,
@@ -27,5 +26,3 @@ def fetch_news_tech_data(category="technology"):
         return {"error": "Failed to fetch news"}
     articles = response.json().get("articles", [])
     return articles
-
-

@@ -6,7 +6,7 @@ import NewsFeedSmall from "./components/NewsFeedSmall";
 const App = () => {
   return (
     <div className="min-h-screen bg-black overflow-y-hidden">
-      <div className="p-8 flex flex-col gap-8">
+      <div className="p-8 flex flex-col md:flex-row gap-8">
         {/* Weather component */}
         <Weather />
 

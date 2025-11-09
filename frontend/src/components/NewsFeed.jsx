@@ -5,11 +5,17 @@ const NewsFeed = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/v1/news") // your Flask API endpoint
-      .then((res) => res.json())
-      .then((data) => setArticles(data))
-      .catch((err) => console.error("Error fetching news:", err));
-  });
+    const fetchNews = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:5000/api/news")
+        setArticles(response.data)
+      } catch (error) {
+        console.error("Error fetching news: ", error)      
+      }
+    };
+    
+    fetchNews();
+  }, []);
 
   return (
     <div className="bg-black">
@@ -17,7 +23,7 @@ const NewsFeed = () => {
         <h1>Top Headlines</h1>
       </header>
       <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {articles.map((item, index) => (
+        {articles.map((item, insdex) => (
           <div
             key={index}
             className="bg-white rounded-2xl shadow p-4 hover:shadow-lg transition"

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.controllers.news_controller import fetch_news_data, fetch_news_tech_data
+from app.controllers.news_controller import fetch_news_data
 
 news_bp = Blueprint("news", __name__)
 

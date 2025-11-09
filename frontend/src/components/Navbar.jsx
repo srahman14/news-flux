@@ -22,9 +22,9 @@ const Navbar = () => {
           >
             News
           </Link>
-          <li className="cursor-pointer bg-gray-300/10 rounded-md hover:bg-gray-300/20 duration-300 transition-all ease-in-out  p-2">
+          <Link to={'/weather'} className="cursor-pointer bg-gray-300/10 rounded-md hover:bg-gray-300/20 duration-300 transition-all ease-in-out  p-2">
             Weather
-          </li>
+          </Link>
         </ul>
       </div>
     </div>

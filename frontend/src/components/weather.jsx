@@ -19,7 +19,7 @@ const Weather = () => {
 
     try {
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/v1/weather?city=${city}&country=${country}`
+        `http://127.0.0.1:5000/api/weather?city=${city}&country=${country}`
       );
 
       if (response.data.error) {
@@ -36,7 +36,7 @@ const Weather = () => {
   };
 
   return (
-    <div className="weather-page">
+    <div className="weather-page rounded-xl">
       <div className="weather-card">
         <h1 className="weather-title">Weather Forecast</h1>
 

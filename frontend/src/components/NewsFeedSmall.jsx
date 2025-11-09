@@ -1,27 +1,32 @@
 import { Loader2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
-
+import axios from "axios";
 const NewsFeedSmall = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/v1/news")
-      .then((res) => res.json())
-      .then((data) => {
-        setArticles(data.slice(0, 5));
+    useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:5000/api/news")
+        console.log(response)
+        setArticles(response.data.slice(0, 5))
         setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching news:", err);
+      } catch (error) {
+        console.error("Error fetching news: ", error)      
         setLoading(false);
-      });
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchNews();
   }, []);
 
   // Skeleton loader
   if (loading) {
     return (
-      <div className="max-w-[40vh] bg-gray-50 p-4 rounded-xl shadow-md">
+      <div className="min-w-[40vh] max-h-[60vh] bg-gray-50 p-4 rounded-xl shadow-md">
         <header className="mb-4">
           <h2 className="text-xl font-bold animate-pulse bg-gray-300 h-6 w-32 rounded"></h2>
         </header>
@@ -46,7 +51,7 @@ const NewsFeedSmall = () => {
   }
 
   return (
-    <div className="bg-gray-50 p-4 rounded-xl shadow-md max-w-[40vh]">
+    <div className="bg-gray-50 min-h-[40vh] max-h-[60vh] p-4 rounded-xl shadow-md max-w-[40vh] overflow-auto ">
       <header className="mb-4">
         <h2 className="text-xl font-bold">Top Headlines</h2>
       </header>

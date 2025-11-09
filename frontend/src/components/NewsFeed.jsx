@@ -23,7 +23,7 @@ const NewsFeed = () => {
         <h1>Top Headlines</h1>
       </header>
       <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {articles.map((item, insdex) => (
+        {articles.map((item, index) => (
           <div
             key={index}
             className="bg-white rounded-2xl shadow p-4 hover:shadow-lg transition"

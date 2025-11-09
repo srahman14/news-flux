@@ -1,0 +1,90 @@
+/* Weather page container */
+.weather-page {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #f4f6fa;
+  min-height: 100vh;
+  font-family: "Montserrat", sans-serif; /* font from index.html */
+}
+
+/* Card styling */
+.weather-card {
+  width: 100%;
+  max-width: 600px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Title */
+.weather-title {
+  text-align: center;
+  color: #1e3a8a;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* Form styling */
+.weather-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #1e40af;
+}
+
+/* Error messages */
+.error-message {
+  color: #dc2626;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Location info */
+.location {
+  text-align: center;
+  color: #0f172a;
+  margin-top: 20px;
+}
+
+/* Forecast list */
+.forecast-list {
+  list-style: none;
+  padding: 0;
+}
+
+.forecast-item {
+  display: flex;
+  justify-content: space-between;
+  background-color: #e0f2fe;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border-radius: 6px;
+}
+
+.forecast-date {
+  font-weight: bold;
+  color: #1e40af;
+}

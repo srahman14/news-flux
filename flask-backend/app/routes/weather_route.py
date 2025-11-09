@@ -1,62 +1,46 @@
-from flask import Blueprint, render_template, request, current_app
+from flask import Blueprint, request, current_app, jsonify
 import requests
 
 weather_bp = Blueprint("weather", __name__)
 
-@weather_bp.route("/weather", methods=["GET", "POST"])
+@weather_bp.route("/weather", methods=["GET"])
 def weather():
-    weather_data = None
-    error_message = None
-    city = ""
-    country = ""
+    city = request.args.get("city", "").strip()
+    country = request.args.get("country", "").strip()
 
-    if request.method == "POST":
-        # Get cit/country inputs
-        city = request.form.get("city", "").strip()
-        country = request.form.get("country", "").strip()
+    if not city or not country:
+        return jsonify({"error": "Please enter both city and country"}), 400
 
-        # Input validation
-        if not city or not country:
-            error_message = "Please enter both a city and a country."
-        else:
-            # Gets api key
-            api_key = current_app.config.get("WEATHER_API_KEY")
-            if not api_key:
-                error_message = "Weather API key not configured."
-            else:
-                # Uses inputs to request json data
-                url = f"http://api.openweathermap.org/data/2.5/forecast?q={city},{country}&units=metric&appid={api_key}"
-                try:
-                    response = requests.get(url)
-                    data = response.json()
+    api_key = current_app.config.get("WEATHER_API_KEY")
+    if not api_key:
+        return jsonify({"error": "Weather API key not configured"}), 500
 
-                    if response.status_code != 200 or data.get("cod") != "200":
-                        error_message = data.get("message", "City or country not recognized.")
-                    else:
-                        # Stores one value each day in a dictionary
-                        daily_forecast = {}
-                        for item in data["list"]:
-                            date_str = item["dt_txt"].split(" ")[0]
-                            if date_str not in daily_forecast:
-                                daily_forecast[date_str] = {
-                                    "temperature": item["main"]["temp"],
-                                    "weather": item["weather"][0]["description"],
-                                    "datetime": item["dt_txt"]
-                                }
-                        # Formats the data
-                        weather_data = {
-                            "city": data["city"]["name"],
-                            "country": data["city"]["country"],
-                            "forecasts": daily_forecast
-                        }
+    url = f"http://api.openweathermap.org/data/2.5/forecast?q={city},{country}&units=metric&appid={api_key}"
 
-                except Exception as e:
-                    error_message = f"An error occurred: {str(e)}"
-    # Sends to html
-    return render_template(
-        "weather.html",
-        weather_data=weather_data,
-        error_message=error_message,
-        city=city,
-        country=country
-    )
+    try:
+        response = requests.get(url)
+        data = response.json()
+
+        if response.status_code != 200 or data.get("cod") != "200":
+            return jsonify({"error": data.get("message", "City or country not recognized")}), 404
+
+        daily_forecast = {}
+        for item in data["list"]:
+            date_str = item["dt_txt"].split(" ")[0]
+            if date_str not in daily_forecast:
+                daily_forecast[date_str] = {
+                    "temperature": item["main"]["temp"],
+                    "weather": item["weather"][0]["description"],
+                    "datetime": item["dt_txt"]
+                }
+
+        weather_data = {
+            "city": data["city"]["name"],
+            "country": data["city"]["country"],
+            "forecasts": daily_forecast
+        }
+
+        return jsonify(weather_data)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500

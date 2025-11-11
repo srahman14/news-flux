@@ -84,8 +84,15 @@ const Weather = () => {
                   className="bg-white p-3 rounded-lg flex justify-between items-center shadow-sm"
                 >
                   <span className="text-black font-medium">{date}</span>
-                  <span className="text-black">
+                  <span className="flex items-center gap-2 text-black">
                     {f.temperature}°C — {f.weather}
+                    {f.icon && (
+                      <img
+                        src={`https://openweathermap.org/img/wn/${f.icon}@2x.png`}
+                        alt={f.weather}
+                        className="w-8 h-8"
+                      />
+                    )}
                   </span>
                 </li>
               ))}

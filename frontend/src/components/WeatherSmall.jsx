@@ -7,7 +7,9 @@ const WeatherSmall = () => {
   useEffect(() => {
     const fetchRandomWeather = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/api/weather/random");
+        const response = await axios.get(
+          "http://127.0.0.1:5000/api/weather/random"
+        );
         setWeather(response.data);
       } catch (error) {
         console.error("Error fetching random weather:", error);
@@ -32,17 +34,26 @@ const WeatherSmall = () => {
       </h2>
 
       <ul className="space-y-2">
-        {Object.entries(weather.forecasts).slice(0, 5).map(([date, f]) => (
-          <li
-            key={date}
-            className="bg-white p-3 rounded-lg flex justify-between items-center hover:shadow-md transition duration-300"
-          >
-            <span className="text-black font-medium">{date}</span>
-            <span className="text-black">
-              {f.temperature}°C — {f.weather}
-            </span>
-          </li>
-        ))}
+        {Object.entries(weather.forecasts)
+          .slice(0, 5)
+          .map(([date, f]) => (
+            <li
+              key={date}
+              className="bg-white p-3 rounded-lg flex justify-between items-center hover:shadow-md transition duration-300"
+            >
+              <span className="text-black font-medium">{date}</span>
+              <span className="flex items-center gap-2 text-black">
+                {f.temperature}°C — {f.weather}
+                {f.icon && (
+                  <img
+                    src={`https://openweathermap.org/img/wn/${f.icon}@2x.png`}
+                    alt={f.weather}
+                    className="w-6 h-6"
+                  />
+                )}
+              </span>
+            </li>
+          ))}
       </ul>
     </div>
   );

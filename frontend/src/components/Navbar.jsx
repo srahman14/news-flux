@@ -1,33 +1,45 @@
-import { NewspaperIcon } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import { NewspaperIcon, SunIcon, DollarSign } from "lucide-react";
 
 const Navbar = () => {
   return (
-    <div className="h-20 p-9 text-white flex justify-between items-center bg-black border border-l-0 border-r-0 border-t-0 border-b-2 border-gray-200/20">
-      <div className="flex gap-2 items-center">
-        <NewspaperIcon />
+    <nav className="h-20 p-6 flex justify-between items-center bg-black border-b-2 border-gray-200/20">
+      {/* Logo / Home */}
+      <div className="flex items-center gap-2">
+        <NewspaperIcon size={24} className="text-white" />
         <Link
-          to={"/"}
-          className="dark:text-white text-black font-bold text-2xl tracking-tighter"
+          to="/"
+          className="text-white font-bold text-2xl tracking-tight hover:text-gray-300 transition"
         >
           newsflux
         </Link>
       </div>
-      <div>
-        <ul className="flex gap-4 font-semibold">
-          <Link
-            to={"/news"}
-            className="cursor-pointer bg-gray-300/10 rounded-md hover:bg-gray-300/20 duration-300 transition-all ease-in-out  p-2"
-          >
-            News
-          </Link>
-          <Link to={'/weather'} className="cursor-pointer bg-gray-300/10 rounded-md hover:bg-gray-300/20 duration-300 transition-all ease-in-out  p-2">
-            Weather
-          </Link>
-        </ul>
-      </div>
-    </div>
+
+      {/* Navigation Links */}
+      <ul className="flex gap-6 font-semibold">
+        <Link
+          to="/news"
+          className="flex items-center gap-1 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-700 transition text-white"
+        >
+          <NewspaperIcon size={16} /> News
+        </Link>
+
+        <Link
+          to="/weather"
+          className="flex items-center gap-1 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-700 transition text-white"
+        >
+          <SunIcon size={16} /> Weather
+        </Link>
+
+        <Link
+          to="/currency"
+          className="flex items-center gap-1 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-700 transition text-white"
+        >
+          <DollarSign size={16} /> Currency
+        </Link>
+      </ul>
+    </nav>
   );
 };
 

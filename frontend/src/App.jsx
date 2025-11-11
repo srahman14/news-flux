@@ -1,6 +1,7 @@
 import React from "react";
 import WeatherSmall from "./components/WeatherSmall";
 import NewsFeedSmall from "./components/NewsFeedSmall";
+import CurrencySmall from "./components/CurrencySmall";
 // If you ever want the full feed:
 // import NewsFeed from "./components/NewsFeed";
 
@@ -17,6 +18,11 @@ const App = () => {
         {/* Small news feed preview */}
         <div className="flex-1 max-w-md">
           <NewsFeedSmall />
+        </div>
+
+        {/* Small currency preview */}
+        <div className="flex-1 max-w-sm">
+          <CurrencySmall />
         </div>
 
         {/* Full news feed (optional) */}

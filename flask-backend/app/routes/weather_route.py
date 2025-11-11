@@ -42,6 +42,8 @@ def random_weather():
                 daily_forecast[date_str] = {
                     "temperature": item["main"]["temp"],
                     "weather": item["weather"][0]["description"],
+                    "icon": item["weather"][0]["icon"],  # Added icon
+                    "datetime": item["dt_txt"]
                 }
 
         return jsonify({
@@ -86,6 +88,7 @@ def weather():
                 daily_forecast[date_str] = {
                     "temperature": item["main"]["temp"],
                     "weather": item["weather"][0]["description"],
+                    "icon": item["weather"][0]["icon"],  # Added icon
                     "datetime": item["dt_txt"]
                 }
 

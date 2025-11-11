@@ -12,6 +12,8 @@ def create_app():
     # Loading API keys
     app.config["NEWS_API_KEY"] = os.getenv("NEWS_API_KEY")
     app.config["WEATHER_API_KEY"] = os.getenv("WEATHER_API_KEY")
+    app.config["CURRENCY_API_KEY"] = os.getenv("CURRENCY_API_KEY")
+    print("CURRENCY_API_KEY:", app.config["CURRENCY_API_KEY"])
     print("NEWS_API_KEY:", app.config["NEWS_API_KEY"])
     print("WEATHER_API_KEY:", app.config["WEATHER_API_KEY"])
 
@@ -19,6 +21,8 @@ def create_app():
     app.register_blueprint(news_bp, url_prefix="/api")
     from app.routes.weather_route import weather_bp
     app.register_blueprint(weather_bp, url_prefix="/api")
+    from app.routes.currency_route import currency_bp
+    app.register_blueprint(currency_bp, url_prefix="/api")
 
     return app
 

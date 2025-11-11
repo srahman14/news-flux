@@ -1,17 +1,23 @@
 import React from "react";
-import Weather from "./components/weather";
-import NewsFeed from "./components/NewsFeed";
+import WeatherSmall from "./components/WeatherSmall";
 import NewsFeedSmall from "./components/NewsFeedSmall";
+// If you ever want the full feed:
+// import NewsFeed from "./components/NewsFeed";
 
 const App = () => {
   return (
-    <div className="min-h-screen bg-black overflow-y-hidden">
+    <div className="min-h-screen bg-black overflow-y-auto">
       <div className="p-8 flex flex-col md:flex-row gap-8">
-        {/* Weather component */}
-        <Weather />
 
-        {/* Small news feed */}
-        <NewsFeedSmall />
+        {/* Small weather preview */}
+        <div className="flex-1 max-w-sm">
+          <WeatherSmall />
+        </div>
+
+        {/* Small news feed preview */}
+        <div className="flex-1 max-w-md">
+          <NewsFeedSmall />
+        </div>
 
         {/* Full news feed (optional) */}
         {/* <NewsFeed /> */}

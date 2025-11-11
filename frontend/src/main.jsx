@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar.jsx";
 import App from "./App.jsx";
 import News from "../pages/News.jsx";
 import Weather from "./components/weather.jsx";
+import CurrencyExchange from "./components/Currency.jsx"; // import main currency page
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -16,6 +17,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/" element={<App />} />
         <Route path="/news" element={<News />} />
         <Route path="/weather" element={<Weather />} />
+        <Route path="/currency" element={<CurrencyExchange />} /> 
       </Routes>
     </BrowserRouter>
   </StrictMode>

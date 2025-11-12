@@ -13,6 +13,8 @@ def create_app():
     app.config["NEWS_API_KEY"] = os.getenv("NEWS_API_KEY")
     app.config["WEATHER_API_KEY"] = os.getenv("WEATHER_API_KEY")
     app.config["CURRENCY_API_KEY"] = os.getenv("CURRENCY_API_KEY")
+    app.config["NASA_API_KEY"] = os.getenv("NASA_API_KEY")
+    print("NASA_API_KEY:", app.config["NASA_API_KEY"])
     print("CURRENCY_API_KEY:", app.config["CURRENCY_API_KEY"])
     print("NEWS_API_KEY:", app.config["NEWS_API_KEY"])
     print("WEATHER_API_KEY:", app.config["WEATHER_API_KEY"])
@@ -23,6 +25,10 @@ def create_app():
     app.register_blueprint(weather_bp, url_prefix="/api")
     from app.routes.currency_route import currency_bp
     app.register_blueprint(currency_bp, url_prefix="/api")
+    from app.routes.Nasa_route import nasa_bp
+    app.register_blueprint(nasa_bp , url_prefix="/api")
+
+
 
     return app
 

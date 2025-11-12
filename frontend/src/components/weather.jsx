@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Sun, Cloud, Droplet } from "lucide-react";
 
 const Weather = () => {
   const [city, setCity] = useState("");
@@ -9,7 +10,6 @@ const Weather = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!city || !country) {
       setErrorMessage("Please enter both city and country.");
       setWeatherData(null);
@@ -36,68 +36,57 @@ const Weather = () => {
 
   return (
     <div className="bg-black min-h-screen flex justify-center items-start p-8">
-      <div className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-md">
-        {/* Title */}
-        <h1 className="text-black text-2xl font-bold text-center mb-6">
-          Weather Forecast
+      <div className="bg-gray-900 rounded-2xl shadow-xl p-6 w-full max-w-md hover:scale-105 transform transition duration-300">
+        <h1 className="text-white text-2xl font-bold text-center mb-6 flex items-center justify-center gap-2">
+          <Sun size={24} /> Weather Forecast
         </h1>
 
-        {/* Form */}
-        <form className="flex flex-col gap-3 mb-6" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3 mb-6">
           <input
             type="text"
             placeholder="City"
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            className="p-2 rounded-md border border-gray-300 text-black"
+            className="p-2 rounded-md border border-gray-700 bg-gray-800 text-white"
           />
           <input
             type="text"
             placeholder="Country (e.g., US)"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
-            className="p-2 rounded-md border border-gray-300 text-black"
+            className="p-2 rounded-md border border-gray-700 bg-gray-800 text-white"
           />
           <button
             type="submit"
-            className="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition mt-2"
+            className="bg-white text-black px-4 py-2 rounded-md hover:bg-gray-200 transition mt-2 font-semibold"
           >
             Get Weather
           </button>
         </form>
 
-        {/* Error Message */}
-        {errorMessage && (
-          <p className="text-red-600 text-center mb-4">{errorMessage}</p>
-        )}
+        {errorMessage && <p className="text-red-500 text-center mb-4">{errorMessage}</p>}
 
-        {/* Weather Forecast */}
         {weatherData && (
-          <>
-            <h2 className="text-black font-bold text-xl text-center mb-4">
-              {weatherData.city}, {weatherData.country}
-            </h2>
-            <ul className="space-y-2">
-              {Object.entries(weatherData.forecasts).map(([date, f]) => (
-                <li
-                  key={date}
-                  className="bg-white p-3 rounded-lg flex justify-between items-center shadow-sm"
-                >
-                  <span className="text-black font-medium">{date}</span>
-                  <span className="flex items-center gap-2 text-black">
-                    {f.temperature}°C — {f.weather}
-                    {f.icon && (
-                      <img
-                        src={`https://openweathermap.org/img/wn/${f.icon}@2x.png`}
-                        alt={f.weather}
-                        className="w-8 h-8"
-                      />
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </>
+          <ul className="space-y-3">
+            {Object.entries(weatherData.forecasts).map(([date, f]) => (
+              <li
+                key={date}
+                className="bg-gray-800 p-3 rounded-xl flex justify-between items-center shadow-md hover:bg-gray-700 transition"
+              >
+                <span className="font-medium">{date}</span>
+                <span className="flex items-center gap-2">
+                  {f.temperature}°C — {f.weather}
+                  {f.icon && (
+                    <img
+                      src={`https://openweathermap.org/img/wn/${f.icon}@2x.png`}
+                      alt={f.weather}
+                      className="w-8 h-8"
+                    />
+                  )}
+                </span>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { NewspaperIcon, SunIcon, DollarSign } from "lucide-react";
+import { FaRegImage } from "react-icons/fa"; // NASA icon
 
 const Navbar = () => {
   return (
@@ -37,6 +38,14 @@ const Navbar = () => {
           className="flex items-center gap-1 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-700 transition text-white"
         >
           <DollarSign size={16} /> Currency
+        </Link>
+
+        {/* NASA Link */}
+        <Link
+          to="/nasa"
+          className="flex items-center gap-1 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-700 transition text-white"
+        >
+          <FaRegImage size={16} /> NASA
         </Link>
       </ul>
     </nav>

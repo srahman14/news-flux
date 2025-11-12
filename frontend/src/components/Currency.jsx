@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ArrowRight, Repeat } from "lucide-react"; // Correct icons
+import { ArrowRight, Repeat, DollarSign } from "lucide-react";
 
 const currencies = ["USD", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY"];
 
@@ -16,7 +16,6 @@ const CurrencyExchange = () => {
       const response = await axios.get(
         `http://127.0.0.1:5000/api/currency/latest?base=${base}&target=${target}`
       );
-
       if (response.data.error) {
         setError(response.data.error);
         setConverted(null);
@@ -30,23 +29,22 @@ const CurrencyExchange = () => {
     }
   };
 
-  // Fetch initial conversion on page load
   useEffect(() => {
     handleExchange();
   }, []);
 
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center p-8">
-      <h1 className="text-white text-3xl font-bold mb-6 flex items-center gap-2">
-        <ArrowRight /> Currency Exchange
-      </h1>
+    <div className="min-h-screen bg-black flex justify-center items-start p-8">
+      <div className="bg-gray-900 rounded-2xl shadow-xl p-8 w-full max-w-lg hover:scale-105 transform transition duration-300">
+        {/* Title */}
+        <h1 className="text-white text-3xl font-bold mb-6 flex items-center gap-2">
+          <DollarSign size={28} /> Currency Exchange
+        </h1>
 
-      <div className="bg-gray-900 p-6 rounded-2xl shadow-md flex flex-col gap-4 w-full max-w-lg">
-        {/* Inputs row */}
-        <div className="flex flex-col md:flex-row gap-4 w-full">
-          {/* Base currency */}
+        {/* Inputs */}
+        <div className="flex flex-col md:flex-row gap-4 mb-4">
           <div className="flex flex-col flex-1">
-            <label className="text-white font-semibold mb-1">Base Currency</label>
+            <label className="text-gray-300 mb-1">Base Currency</label>
             <select
               value={base}
               onChange={(e) => setBase(e.target.value)}
@@ -58,9 +56,8 @@ const CurrencyExchange = () => {
             </select>
           </div>
 
-          {/* Target currency */}
           <div className="flex flex-col flex-1">
-            <label className="text-white font-semibold mb-1">Target Currency</label>
+            <label className="text-gray-300 mb-1">Target Currency</label>
             <select
               value={target}
               onChange={(e) => setTarget(e.target.value)}
@@ -72,9 +69,8 @@ const CurrencyExchange = () => {
             </select>
           </div>
 
-          {/* Amount */}
           <div className="flex flex-col flex-1">
-            <label className="text-white font-semibold mb-1">Amount</label>
+            <label className="text-gray-300 mb-1">Amount</label>
             <input
               type="number"
               min="0"
@@ -85,24 +81,24 @@ const CurrencyExchange = () => {
           </div>
         </div>
 
-        {/* Convert button */}
+        {/* Convert Button */}
         <button
           onClick={handleExchange}
-          className="flex items-center gap-2 mt-2 justify-center bg-white text-black px-4 py-2 rounded-md hover:bg-gray-200 transition w-full md:w-auto"
+          className="w-full md:w-auto flex justify-center items-center gap-2 px-4 py-2 bg-white text-black font-semibold rounded-md hover:bg-gray-200 transition"
         >
           <Repeat /> Convert
         </button>
+
+        {/* Error */}
+        {error && <p className="text-red-500 mt-4">{error}</p>}
+
+        {/* Result */}
+        {converted !== null && !error && (
+          <p className="text-green-400 font-bold text-xl mt-6 text-center">
+            {amount} {base} = {converted.toFixed(2)} {target}
+          </p>
+        )}
       </div>
-
-      {/* Error message */}
-      {error && <p className="text-red-600 mt-4">{error}</p>}
-
-      {/* Converted result */}
-      {converted !== null && !error && (
-        <p className="text-white font-bold text-xl mt-6">
-          {amount} {base} = {converted.toFixed(2)} {target}
-        </p>
-      )}
     </div>
   );
 };

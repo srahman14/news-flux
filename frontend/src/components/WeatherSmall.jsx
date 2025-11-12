@@ -39,10 +39,10 @@ const WeatherSmall = () => {
           .map(([date, f]) => (
             <li
               key={date}
-              className="bg-white p-3 rounded-lg flex justify-between items-center hover:shadow-md transition duration-300"
+              className="bg-grey p-3 rounded-lg flex justify-between items-center hover:shadow-md transition duration-300"
             >
-              <span className="text-black font-medium">{date}</span>
-              <span className="flex items-center gap-2 text-black">
+              <span className="text-white font-medium">{date}</span>
+              <span className="flex items-center gap-2 text-white">
                 {f.temperature}°C — {f.weather}
                 {f.icon && (
                   <img

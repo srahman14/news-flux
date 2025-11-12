@@ -27,6 +27,8 @@ def create_app():
     app.register_blueprint(currency_bp, url_prefix="/api")
     from app.routes.Nasa_route import nasa_bp
     app.register_blueprint(nasa_bp , url_prefix="/api")
+    from app.routes.crypto_route import crypto_bp
+    app.register_blueprint(crypto_bp, url_prefix="/api")
 
 
 

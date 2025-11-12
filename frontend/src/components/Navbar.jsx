@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { NewspaperIcon, SunIcon, DollarSign } from "lucide-react";
+import { NewspaperIcon, SunIcon, DollarSign, CreditCard } from "lucide-react"; // Added CreditCard for Crypto
 import { FaRegImage } from "react-icons/fa"; // NASA icon
 
 const Navbar = () => {
@@ -46,6 +46,14 @@ const Navbar = () => {
           className="flex items-center gap-1 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-700 transition text-white"
         >
           <FaRegImage size={16} /> NASA
+        </Link>
+
+        {/* Crypto Link */}
+        <Link
+          to="/crypto"
+          className="flex items-center gap-1 cursor-pointer px-3 py-1 rounded-md hover:bg-gray-700 transition text-white"
+        >
+          <CreditCard size={16} /> Crypto
         </Link>
       </ul>
     </nav>

@@ -1,2 +1,36 @@
+# ---------------------------
+# Python / Flask
+# ---------------------------
 .venv/
+__pycache__/
+.env
+
+# ---------------------------
+# Node / React
+# ---------------------------
+node_modules/
+dist/
+dist-ssr/
+
+# ---------------------------
+# Logs
+# ---------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ---------------------------
+# OS / Editor
+# ---------------------------
 .DS_Store
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

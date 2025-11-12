@@ -2,7 +2,7 @@ import React from "react";
 import WeatherSmall from "./components/WeatherSmall";
 import NewsFeedSmall from "./components/NewsFeedSmall";
 import CurrencySmall from "./components/CurrencySmall";
-import Nasasmall from "./components/Nasasmall";
+import Nasasmall from "./components/NasaSmall";
 
 import { SunIcon, NewspaperIcon, DollarSign, Globe2 } from "lucide-react";
 

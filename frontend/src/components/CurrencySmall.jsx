@@ -34,23 +34,17 @@ const CurrencySmall = () => {
 
   if (loading) {
     return (
-      <div className="bg-gray-900 p-4 rounded-xl shadow-md min-h-[40vh] flex justify-center items-center">
+      <div className="p-4 rounded-xl min-h-[40vh] flex justify-center items-center">
         <p className="text-gray-300 animate-pulse">Loading rates...</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-gray-900 p-4 rounded-xl shadow-md min-h-[40vh] max-w-sm flex flex-col gap-3">
+    <div className="p-4 rounded-xl min-h-[40vh] max-w-sm flex flex-col gap-3">
       {/* Header */}
       <div className="mb-2">
         <h2 className="text-white text-xl font-bold truncate">Top Currencies</h2>
-        <button
-          onClick={() => navigate("/currency")}
-          className="mt-3 bg-black text-white text-base px-4 py-2 rounded-md flex items-center gap-2 hover:bg-gray-800 transition"
-        >
-          Exchange <ArrowRight size={16} />
-        </button>
       </div>
 
       {/* Currency list */}
@@ -58,7 +52,7 @@ const CurrencySmall = () => {
         {rates.map(([currency, value]) => (
           <li
             key={currency}
-            className="flex justify-between items-center p-3 rounded-md bg-gray-800 shadow hover:shadow-lg transition"
+            className="flex justify-between items-center p-3 rounded-md bg-neutral-800 shadow hover:shadow-lg transition"
           >
             <span className="font-medium text-white truncate">{currency.toUpperCase()}</span>
             <span className="font-semibold text-green-400 truncate" style={{ maxWidth: "50%" }}>

@@ -1,6 +1,7 @@
 // frontend/src/components/CryptoSmall.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ArrowRight } from "lucide-react";
 
 const CryptoSmall = () => {
   const [topCryptos, setTopCryptos] = useState([]);
@@ -31,7 +32,7 @@ const CryptoSmall = () => {
   }, []);
 
   return (
-    <div className="bg-gray-900 rounded-xl shadow-lg p-4 w-full max-w-sm">
+    <div className="rounded-xl p-4 w-full max-w-sm">
       <h2 className="text-xl font-semibold mb-3 text-white">Top 5 Cryptos</h2>
 
       {error && <p className="text-red-500">{error}</p>}
@@ -40,7 +41,7 @@ const CryptoSmall = () => {
         {topCryptos.map((coin) => (
           <li
             key={coin.id}
-            className="flex justify-between items-center p-2 bg-gray-800 rounded-md hover:bg-gray-700 transition"
+            className="flex justify-between items-center p-3 bg-neutral-800 rounded-md hover:bg-gray-700 transition"
           >
             <div className="flex items-center gap-2 min-w-0">
               <img src={coin.image} alt={coin.name} className="w-6 h-6 rounded-full" />

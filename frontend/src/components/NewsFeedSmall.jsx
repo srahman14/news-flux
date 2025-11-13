@@ -10,7 +10,7 @@ const NewsFeedSmall = () => {
     const fetchNews = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:5000/api/news");
-        setArticles(response.data.slice(0, 4)); // show exactly 4 articles
+        setArticles(response.data.slice(0, 6)); 
       } catch (error) {
         console.error("Error fetching news:", error);
       } finally {
@@ -23,14 +23,14 @@ const NewsFeedSmall = () => {
 
   if (loading) {
     return (
-      <div className="bg-gray-900 p-4 rounded-xl shadow-md min-h-[40vh] flex justify-center items-center">
+      <div className="p-4 rounded-xl min-h-[40vh] flex justify-center items-center">
         <p className="text-gray-300 animate-pulse">Loading news...</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-gray-900 p-4 rounded-xl shadow-md min-h-[40vh] flex flex-col gap-4">
+    <div className="p-4 rounded-xl min-h-[40vh] flex flex-col gap-4">
     
 
       {/* Articles */}
@@ -38,7 +38,7 @@ const NewsFeedSmall = () => {
         {articles.map((article, index) => (
           <div
             key={index}
-            className="flex items-start gap-3 bg-gray-800 p-3 rounded-lg shadow hover:shadow-md transition"
+            className="flex items-start gap-3 bg-neutral-800 p-3 rounded-lg shadow hover:shadow-md transition"
           >
             {article.image_url && (
               <img
@@ -60,7 +60,7 @@ const NewsFeedSmall = () => {
                 href={article.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 text-xs font-medium hover:underline mt-auto"
+                className="text-blue-400 text-xs font-medium hover:underline mt-3"
               >
                 Read more →
               </a>

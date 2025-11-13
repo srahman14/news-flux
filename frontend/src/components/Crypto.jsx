@@ -46,10 +46,10 @@ const Crypto = () => {
     if (!cryptoId) return;
     setLoadingHistory(true);
     try {
-      const res = await axios.get("http://127.0.0.1:5000/api/crypto", {
+      const res = await axios.get("http://127.0.0.1:5000/api/crypto-history", {
         params: { crypto: cryptoId, days: timeframe }
       });
-      setHistory(res.data.history?.prices || []);
+      setHistory(res.data?.prices || []);
       setError("");
     } catch {
       setHistory([]);

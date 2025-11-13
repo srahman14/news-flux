@@ -1,3 +1,4 @@
+from flask import current_app 
 import requests
 
 def get_top_cryptos(limit=5):
@@ -11,7 +12,7 @@ def get_top_cryptos(limit=5):
     }
 
     try:
-        response = requests.get(url, params=params, timeout=10).json()
+        response = requests.get(url, params=params).json()
         if not isinstance(response, list):
             return []
         return [
@@ -26,10 +27,13 @@ def get_top_cryptos(limit=5):
         return []
 
 def get_crypto_history(crypto="bitcoin", days=30):
+    api_key = current_app.config.get("CRYPTO_API_KEY")
     url = f"https://api.coingecko.com/api/v3/coins/{crypto}/market_chart"
-    params = {"vs_currency": "usd", "days": days}
+    querystring = {"vs_currency":"usd","days":"1"}
+    headers = {"x-cg-pro-api-key": f"{api_key}"}
     try:
-        response = requests.get(url, params=params, timeout=10).json()
+        response = requests.get(url,  headers=headers, params=querystring).json()
         return {"prices": response.get("prices", [])}
     except requests.RequestException:
+        print(response)
         return {"prices": []}

@@ -9,7 +9,9 @@ import News from "../pages/News.jsx";
 import Weather from "./components/Weather.jsx";
 import CurrencyExchange from "./components/Currency.jsx";
 import Nasa from "./components/Nasa.jsx";
-import Crypto from "./components/Crypto.jsx"; // <-- full crypto page
+import Crypto from "./components/Crypto.jsx";
+
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

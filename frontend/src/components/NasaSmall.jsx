@@ -21,8 +21,7 @@ const Nasasmall = () => {
       });
   }, []);
 
-  if (loading)
-    return <p className="text-white">Loading NASA APOD...</p>;
+  if (loading) return <p className="text-white">Loading NASA APOD...</p>;
   if (error) return <p className="text-white">{error}</p>;
 
   return (
@@ -40,20 +39,19 @@ const Nasasmall = () => {
           <img
             src={apod.url}
             alt={apod.title}
-            className="w-full h-64 sm:h-72 rounded-lg object-cover mb-3"
+            className="w-full h-full sm:h-72 rounded-lg object-cover mb-3"
           />
         ) : (
           <iframe
             title={apod.title}
             src={apod.url}
-            frameBorder="0"
             allowFullScreen
-            className="w-full h-64 sm:h-72 rounded-lg mb-3"
+            className="w-full h-full sm:h-72 rounded-lg mb-3"
           ></iframe>
         )}
       </div>
 
-      <div className="flex items-start gap-3">
+      <div className="flex flex-col items-start gap-4">
         <p
           className={`text-sm text-neutral-300 leading-relaxed transition-all ${
             showFullText ? "max-h-60" : "max-h-20 overflow-hidden"
@@ -68,18 +66,18 @@ const Nasasmall = () => {
           onClick={() => setShowFullText((p) => !p)}
           aria-expanded={showFullText}
           aria-label={showFullText ? "Hide details" : "Show details"}
-          className="ml-auto p-2 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-200"
+          className="mr-auto p-2 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-200"
         >
           <InfoIcon className="w-5 h-5" />
         </button>
-      </div>
 
-      <a
-        href="/nasa"
-        className="mt-auto inline-block text-indigo-400 hover:text-indigo-300 font-medium"
-      >
-        See more →
-      </a>
+        <a
+          href="/nasa"
+          className="mt-auto inline-block text-indigo-400 hover:text-indigo-300 font-medium"
+        >
+          See more →
+        </a>
+      </div>
     </div>
   );
 };

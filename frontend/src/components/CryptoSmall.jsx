@@ -22,7 +22,8 @@ const CryptoSmall = () => {
       );
       setTopCryptos(res.data);
       setError("");
-    } catch {
+    } catch (error) {
+      console.error("Error: ", error);
       setError("Failed to fetch crypto data.");
     }
   };
@@ -44,8 +45,14 @@ const CryptoSmall = () => {
             className="flex justify-between items-center p-3 bg-neutral-800 rounded-md hover:bg-gray-700 transition"
           >
             <div className="flex items-center gap-2 min-w-0">
-              <img src={coin.image} alt={coin.name} className="w-6 h-6 rounded-full" />
-              <span className="text-white font-medium truncate">{coin.name}</span>
+              <img
+                src={coin.image}
+                alt={coin.name}
+                className="w-6 h-6 rounded-full"
+              />
+              <span className="text-white font-medium truncate">
+                {coin.name}
+              </span>
             </div>
             <span className="text-green-400 font-semibold ml-2 whitespace-nowrap">
               ${coin.current_price.toLocaleString()}

@@ -13,6 +13,7 @@ import {
   Gem,
   ArrowRight,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const App = () => {
   return (
@@ -43,17 +44,16 @@ const App = () => {
           <div className="bg-neutral-900 rounded-xl p-4 hover:scale-105 transform transition-all duration-300">
             <div className="flex items-center justify-between gap-2 mb-2">
               <div className="flex justify-center items-center gap-2">
-              <DollarSign size={20} className="text-green-400" />
-              <h2 className="text-xl font-semibold">Currency</h2>
-
+                <DollarSign size={20} className="text-green-400" />
+                <h2 className="text-xl font-semibold">Currency</h2>
               </div>
               <div>
-                <button
-                  onClick={() => navigate("/currency")}
+                <Link
+                  to={"/currency"}
                   className="mt-3 cursor-pointer bg-neutral text-white text-base px-4 py-2 rounded-md flex items-center gap-2 hover:bg-gray-100/10 transition"
                 >
                   Exchange <ArrowRight size={16} />
-                </button>
+                </Link>
               </div>
             </div>
             <CurrencySmall />
@@ -67,12 +67,12 @@ const App = () => {
                 <h2 className="text-xl font-semibold">Crypto</h2>
               </div>
               <div className="">
-                <button
-                  onClick={() => navigate("/currency")}
+                <Link
+                  to={"/crypto"}
                   className="mt-3 cursor-pointer bg-neutral text-white text-base px-4 py-2 rounded-md flex items-center gap-2 hover:bg-gray-100/10 transition"
                 >
                   Crypto <ArrowRight size={16} />
-                </button>
+                </Link>
               </div>
             </div>
             <CryptoSmall />

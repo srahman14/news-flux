@@ -101,8 +101,3 @@ Common error response example:
 { "error": "Description of problem" }
 ```
 
-If you want, I can:
-- Add example curl commands for each endpoint.
-- Add full example responses captured from the running backend.
-- Validate and fix any route typos (e.g. missing leading slash in `news_routes.py`) so the documentation exactly matches the running endpoints.
-

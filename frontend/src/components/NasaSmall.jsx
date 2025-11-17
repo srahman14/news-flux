@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { InfoIcon } from "lucide-react";
 import axios from "axios";
+import { API_BASE_URL } from "../lib/api";
 
 const Nasasmall = () => {
   const [apod, setApod] = useState(null);
@@ -10,7 +11,7 @@ const Nasasmall = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:5000/api/nasa-small")
+      .get(`${API_BASE_URL}/api/nasa-small`)
       .then((res) => {
         setApod(res.data);
         setLoading(false);

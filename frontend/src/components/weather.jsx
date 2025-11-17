@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Sun, Cloud, Droplet } from "lucide-react";
+import { API_BASE_URL } from "../lib/api";
 
 const Weather = () => {
   const [city, setCity] = useState("");
@@ -18,7 +19,7 @@ const Weather = () => {
 
     try {
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/weather?city=${city}&country=${country}`
+        `${API_BASE_URL}/api/weather?city=${city}&country=${country}`
       );
 
       if (response.data.error) {

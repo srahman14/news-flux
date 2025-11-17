@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
@@ -6,8 +6,8 @@ import os
 def create_app():
     load_dotenv()
 
-    app = Flask(__name__)
-    CORS(app)
+    app = Flask(__name__, static_folder="static", template_folder="templates")
+    # CORS(app)
 
     # Loading API keys
     app.config["NEWS_API_KEY"] = os.getenv("NEWS_API_KEY")
@@ -15,11 +15,11 @@ def create_app():
     app.config["CURRENCY_API_KEY"] = os.getenv("CURRENCY_API_KEY")
     app.config["NASA_API_KEY"] = os.getenv("NASA_API_KEY")
     app.config["CRYPTO_API_KEY"] = os.getenv("CRYPTO_API_KEY")
-    print("NASA_API_KEY:", app.config["NASA_API_KEY"])
-    print("CURRENCY_API_KEY:", app.config["CURRENCY_API_KEY"])
-    print("NEWS_API_KEY:", app.config["NEWS_API_KEY"])
-    print("WEATHER_API_KEY:", app.config["WEATHER_API_KEY"])
-    print("CRYPTO_API_KEY:", app.config["CRYPTO_API_KEY"])
+    # print("NASA_API_KEY:", app.config["NASA_API_KEY"])
+    # print("CURRENCY_API_KEY:", app.config["CURRENCY_API_KEY"])
+    # print("NEWS_API_KEY:", app.config["NEWS_API_KEY"])
+    # print("WEATHER_API_KEY:", app.config["WEATHER_API_KEY"])
+    # print("CRYPTO_API_KEY:", app.config["CRYPTO_API_KEY"])
 
     from app.routes.news_routes import news_bp
     app.register_blueprint(news_bp, url_prefix="/api")
@@ -32,7 +32,15 @@ def create_app():
     from app.routes.crypto_route import crypto_bp
     app.register_blueprint(crypto_bp, url_prefix="/api")
 
+    # ----- FRONTEND ROUTES -----
+    @app.route("/")
+    def index():
+        return render_template("index.html")
 
+    # Catch-all for React Router / Vite SPA
+    @app.route("/<path:path>")
+    def catch_all(path):
+        return render_template("index.html")
 
     return app
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../lib/api";
 
 const WeatherSmall = () => {
   const [weather, setWeather] = useState(null);
@@ -8,7 +9,7 @@ const WeatherSmall = () => {
     const fetchRandomWeather = async () => {
       try {
         const response = await axios.get(
-          "http://127.0.0.1:5000/api/weather/random"
+          `${API_BASE_URL}/api/weather/random`
         );
         setWeather(response.data);
       } catch (error) {

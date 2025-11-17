@@ -10,7 +10,7 @@ import {
   Tooltip,
   Legend
 } from "chart.js";
-
+import { API_BASE_URL } from "../lib/api";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
 const TIMEFRAMES = [7, 30, 90, 180, 365];
@@ -28,7 +28,7 @@ const Crypto = () => {
   const fetchTopCryptos = async () => {
     setLoadingTop(true);
     try {
-      const res = await axios.get("http://127.0.0.1:5000/api/crypto-small");
+      const res = await axios.get(`${API_BASE_URL}/api/crypto-small`);
       if (res.data && res.data.length > 0) {
         setTopCryptos(res.data);
         setSelectedCryptoId(res.data[0].id); // select first by default
@@ -46,7 +46,7 @@ const Crypto = () => {
     if (!cryptoId) return;
     setLoadingHistory(true);
     try {
-      const res = await axios.get("http://127.0.0.1:5000/api/crypto-history", {
+      const res = await axios.get(`${API_BASE_URL}/api/crypto-history`, {
         params: { crypto: cryptoId, days: timeframe }
       });
       setHistory(res.data?.prices || []);

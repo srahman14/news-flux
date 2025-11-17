@@ -33,8 +33,8 @@ function RouterWrapper() {
         <Route path="/currency" element={<CurrencyExchange />} />
         <Route path="/nasa" element={<Nasa />} />
         <Route path="/crypto" element={<Crypto />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        {/* <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} /> */}
       </Routes>
     </>
   );

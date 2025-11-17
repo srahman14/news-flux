@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaCalendarAlt, FaRegImage, FaPlayCircle } from "react-icons/fa";
 import axios from "axios";
+import { API_BASE_URL } from "../lib/api";
 
 const Nasa = () => {
   const [date, setDate] = useState("");
@@ -13,7 +14,7 @@ const Nasa = () => {
     setLoading(true);
     setError(null);
 
-    axios.get(`http://127.0.0.1:5000/api/nasa?date=${date}`)
+    axios.get(`${API_BASE_URL}/api/nasa?date=${date}`)
       .then(res => {
         setApod(res.data);
         setLoading(false);

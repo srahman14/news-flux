@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { NewspaperIcon } from "lucide-react";
+import { API_BASE_URL } from "../lib/api";
 
 const NewsFeedSmall = () => {
   const [articles, setArticles] = useState([]);
@@ -9,7 +10,7 @@ const NewsFeedSmall = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/api/news");
+        const response = await axios.get(`${API_BASE_URL}/api/news`);
         setArticles(response.data.slice(0, 6)); 
       } catch (error) {
         console.error("Error fetching news:", error);

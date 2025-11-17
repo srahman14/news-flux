@@ -20,4 +20,4 @@ def crypto_history():
         days = 30
 
     history = get_crypto_history(crypto, days)
-    return jsonify(history)  # returns {"prices": [...]}
+    return jsonify(history) 

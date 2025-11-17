@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../lib/api";
 
 const CurrencySmall = () => {
   const [rates, setRates] = useState([]);
@@ -11,7 +12,7 @@ const CurrencySmall = () => {
   useEffect(() => {
     const fetchRates = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/api/currency/latest");
+        const response = await axios.get(`${API_BASE_URL}/api/currency/latest`);
         if (response.data.rates) {
           const rateArray = Array.isArray(response.data.rates)
             ? response.data.rates

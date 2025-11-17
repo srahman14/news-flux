@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ArrowRight, Repeat, DollarSign } from "lucide-react";
+import { API_BASE_URL } from "../lib/api";
 
 const currencies = ["USD", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY"];
 
@@ -14,7 +15,7 @@ const CurrencyExchange = () => {
   const handleExchange = async () => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:5000/api/currency/latest?base=${base}&target=${target}`
+        `${API_BASE_URL}/api/currency/latest?base=${base}&target=${target}`
       );
       if (response.data.error) {
         setError(response.data.error);

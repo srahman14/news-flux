@@ -4,6 +4,10 @@ Newsflux is a full-stack web application that provides news, weather, cryptocurr
 
 ---
 
+![Newsflux Homepage](images/screenshot.png)
+
+---
+
 ## Live Demo
 
 [Click here to visit Newsflux](https://news-flux-krxg.onrender.com/)

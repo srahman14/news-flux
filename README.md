@@ -97,6 +97,11 @@ python run.py
 - Frontend and backend are served from a single domain.
 - Vite builds are copied into Flask’s templates and static folders.
 - Production server runs using Gunicorn.
+- 
+## Collaborators
 
+- [@Musa B](https://github.com/Musaburke)
+- [@Sayed R](https://github.com/srahman14)
+- 
 # License
 MIT License

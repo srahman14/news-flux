@@ -71,7 +71,7 @@ frontend/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/newsflux.git
+git clone https://github.com/srahman14/newsflux.git
 cd flask-backend
 ```
 

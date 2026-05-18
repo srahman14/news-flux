@@ -71,7 +71,7 @@ frontend/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/newsflux.git
+git clone https://github.com/srahman14/newsflux.git
 cd flask-backend
 ```
 
@@ -97,6 +97,11 @@ python run.py
 - Frontend and backend are served from a single domain.
 - Vite builds are copied into Flask’s templates and static folders.
 - Production server runs using Gunicorn.
+
+## Collaborators
+
+- [@Musa B](https://github.com/Musaburke)
+- [@Sayed R](https://github.com/srahman14)
 
 # License
 MIT License

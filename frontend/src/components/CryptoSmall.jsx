@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ArrowRight } from "lucide-react";
+import { API_BASE_URL } from "../lib/api";
 
 const CryptoSmall = () => {
   const [topCryptos, setTopCryptos] = useState([]);
